@@ -20,20 +20,37 @@ def fetchsamples():
     int = random.randrange(1,len(news))
     tweet = news[int]['title']  
     text = tweet + " #noticias elobjetivista.com".encode("utf-8") 
-    if len(text) <= 140:
+    if len(text) <= 115:
         post = text
     else:
-        post = "elobjetivista.com tu portal de titulares aleatorios #noticias"    
+        phrases =['elobjetivista.com tu portal de titulares aleatorios #noticias',
+                  'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
+                  'Lee las #noticias, create una opinión en elobjetivista.com',
+                  'Todas las #noticias en elobjetivista.com']
+                  
+        post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")     
+    
+    trends = api.trends_place('23424950')
+    
+    i = 0
+    size = len(post)
+    while size < 140:  
+        hashtag = trends[0]['trends'][i+2]['name']
+        size = len(post) + len(" "+hashtag) 
+        if size < 140:
+            post = post +" "+ hashtag
+        i += 1  
+    
     return post   
     #int = random.randrange(1,len(news))
     #tweet = news[int]
     #return tweet 
 
 def postTweet():
-    while True:    
+    while True:
         text = fetchsamples()
         api.update_status(text)    
-        # Sleep for 1 hour
-        time.sleep(300)
-        
+        # Random sleep
+        time.sleep(random.randrange(60,5000))
+
 postTweet()
