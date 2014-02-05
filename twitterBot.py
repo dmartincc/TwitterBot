@@ -50,11 +50,9 @@ def fetchsamples():
 def postTweet():
     while True:
         text = fetchsamples()
-        print len(text), text
         api.update_status(text)    
         # Random sleep
         snooze = random.randrange(500,3000)
-        print snooze
         time.sleep(snooze)
 
 postTweet()
