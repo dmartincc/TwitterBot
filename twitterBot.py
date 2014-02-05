@@ -17,40 +17,44 @@ def fetchsamples():
     data = response.read()
     jsonData = json.loads(data)    
     news  = jsonData['value']['items']
-    int = random.randrange(1,len(news))
-    tweet = news[int]['title']  
-    text = tweet + " #noticias elobjetivista.com".encode("utf-8") 
-    if len(text) <= 115:
-        post = text
+    phrases =['elobjetivista.com tu portal de titulares aleatorios #noticias',
+                      'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
+                      'Lee las #noticias, create una opinión en elobjetivista.com',
+                      'Todas las #noticias en elobjetivista.com']
+                      
+    if news != "":
+        int = random.randrange(1,len(news))
+        tweet = news[int]['title']  
+        text = tweet + " #noticias bit.ly/1fk7HaL".encode("utf-8") 
+        if len(text) <= 105:
+            post = text
+        else:                     
+            post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")
     else:
-        phrases =['elobjetivista.com tu portal de titulares aleatorios #noticias',
-                  'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
-                  'Lee las #noticias, create una opinión en elobjetivista.com',
-                  'Todas las #noticias en elobjetivista.com']
-                  
-        post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")     
+        post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")
     
     trends = api.trends_place('23424950')
     
     i = 0
     size = len(post)
-    while size < 140:  
-        hashtag = trends[0]['trends'][i+2]['name']
+    while size < 130:  
+        hashtag = trends[0]['trends'][i+1]['name']
         size = len(post) + len(" "+hashtag) 
-        if size < 140:
+        if size < 130:
             post = post +" "+ hashtag
-        i += 1  
+        i += 1     
     
     return post   
-    #int = random.randrange(1,len(news))
-    #tweet = news[int]
-    #return tweet 
+    
 
 def postTweet():
     while True:
         text = fetchsamples()
+        print len(text), text
         api.update_status(text)    
         # Random sleep
-        time.sleep(random.randrange(60,5000))
+        snooze = random.randrange(500,3000)
+        print snooze
+        time.sleep(snooze)
 
 postTweet()
