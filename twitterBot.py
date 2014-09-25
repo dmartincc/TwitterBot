@@ -22,14 +22,14 @@ def fetchsamples():
              'Lee las #noticias, create una opinión en elobjetivista.com',
              'Todas las #noticias en elobjetivista.com']
                       
-    if news != "":
+    if len(news) != 0:
         int = random.randrange(1,len(news))
         tweet = news[int]['title']  
         text = tweet + " #noticias bit.ly/1fk7HaL".encode("utf-8") 
         if len(text) <= 105:
             post = text
         else:                     
-            post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")
+            post = phrases[random.randrange(0,len(phrases)-1)]
     else:
         post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")
     
@@ -52,7 +52,7 @@ def postTweet():
         text = fetchsamples()
         api.update_status(text)    
         # Random sleep
-        snooze = random.randrange(500,3000)
+        snooze = random.randrange(1000,5000)
         time.sleep(snooze)
 
 postTweet()
