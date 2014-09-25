@@ -18,9 +18,9 @@ def fetchsamples():
     jsonData = json.loads(data)    
     news  = jsonData['value']['items']
     phrases =['elobjetivista.com tu portal de titulares aleatorios #noticias',
-                      'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
-                      'Lee las #noticias, create una opinión en elobjetivista.com',
-                      'Todas las #noticias en elobjetivista.com']
+             'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
+             'Lee las #noticias, create una opinión en elobjetivista.com',
+             'Todas las #noticias en elobjetivista.com']
                       
     if news != "":
         int = random.randrange(1,len(news))
