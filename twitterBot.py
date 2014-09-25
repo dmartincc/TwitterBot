@@ -25,7 +25,7 @@ def fetchsamples():
     if len(news) != 0:
         int = random.randrange(1,len(news))
         tweet = news[int]['title']  
-        text = tweet + " #noticias bit.ly/1fk7HaL"
+        text = tweet + " bit.ly/1fk7HaL #noticias"
         if len(text) <= 105:
             post = text
         else:                     
