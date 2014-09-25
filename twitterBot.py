@@ -25,13 +25,13 @@ def fetchsamples():
     if len(news) != 0:
         int = random.randrange(1,len(news))
         tweet = news[int]['title']  
-        text = tweet + " #noticias bit.ly/1fk7HaL".encode("utf-8") 
+        text = tweet + " #noticias bit.ly/1fk7HaL"
         if len(text) <= 105:
             post = text
         else:                     
             post = phrases[random.randrange(0,len(phrases)-1)]
     else:
-        post = phrases[random.randrange(0,len(phrases)-1)].encode("utf-8")
+        post = phrases[random.randrange(0,len(phrases)-1)]
     
     trends = api.trends_place('23424950')
     
