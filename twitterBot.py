@@ -17,7 +17,7 @@ def fetchsamples():
     data = response.read()
     jsonData = json.loads(data)    
     news  = jsonData['value']['items']
-    phrases =['elobjetivista.com tu portal de titulares aleatorios #noticias',
+    phrases =['elobjetivista.com te recomienda las #noticias que te interesan',
              'Descubre la nueva forma de leer las #noticias en elobjetivista.com',
              'Lee las #noticias, create una opinión en elobjetivista.com',
              'Todas las #noticias en elobjetivista.com']
