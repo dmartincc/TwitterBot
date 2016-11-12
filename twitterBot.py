@@ -107,7 +107,7 @@ def postTweet():
         except:
             pass
         # Random sleep
-        snooze = random.randrange(10000,50000)
+        snooze = random.randrange(1,5)
         time.sleep(snooze)
 
 postTweet()
