@@ -35,9 +35,11 @@ def get_news():
         if len(text) < 150:
             post = text
         else:                     
-            post = phrases[random.randrange(0,len(phrases)-1)].encode("utf8")
+            msg = phrases[random.randrange(0,len(phrases)-1)].encode("utf8")
+            post = get_trends(msg)
     else:
-        post = phrases[random.randrange(0,len(phrases)-1)].encode("utf8")
+        msg = phrases[random.randrange(0,len(phrases)-1)].encode("utf8")
+        post = get_trends(msg)
 
     return post
 
@@ -105,6 +107,7 @@ def postTweet():
         try:
             compose_status() 
         except:
+            print "Error"
             pass
         # Random sleep
         snooze = random.randrange(10000,25000)
